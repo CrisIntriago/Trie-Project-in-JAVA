@@ -13,41 +13,41 @@ import java.util.LinkedList;
 public class Trie {
 
     private TrieNode root;
-    
-    
-    public Trie(){
-          this.root= new TrieNode();
-    }
-    
 
-    public void insert(String palabra){
-        String[] palabraSeparada= palabra.split("");
-        
-        Trie arbolSiguiente= this;
-        
-        for(int i=0;i<palabraSeparada.length;i++){
-            arbolSiguiente=this.root.getSubArbol(palabraSeparada[i]);
-        }
-        
-        
-        Trie arbolPalabra =arbolSiguiente.root.añadirSubArbol(palabra);
-        arbolPalabra.root.confirmoPalabra();
-        arbolPalabra.root.setPalabraCompleta(palabra);
-        
+    public Trie() {
+        this.root = new TrieNode();
     }
-    
-    public void busquedaPalabra(String palabra){
-        String[] palabraSeparada= palabra.split("");
-        Trie arbolSiguiente= this;
-        for(int i=0;i<palabraSeparada.length;i++){
-            arbolSiguiente=this.root.getSubArbol(palabraSeparada[i]);
-        }
-        Trie arbolPalabra =arbolSiguiente.root.añadirSubArbol(palabra);
-        arbolPalabra.root.confirmoPalabra();
-        arbolPalabra.root.setPalabraCompleta(palabra);
-        
-    }
-    
 
-    
-}
+    public void insert(String palabra) {
+        String[] letras = palabra.split("");
+        
+        Trie arbolSiguiente = this;
+
+        for (int i = 0; i < letras.length; i++) {
+            arbolSiguiente = this.root.insertarSubArbol(letras[i]);
+        }
+
+        Trie arbolPalabra = arbolSiguiente.root.añadirSubArbol(palabra);
+        arbolPalabra.root.confirmarPalabra();
+
+    }
+
+    public boolean busquedaPalabra(String palabra) {
+        String[] letras = palabra.split("");
+        Trie arbolSiguiente = this;
+
+        for (int i = 0; i < letras.length; i++) {
+            if (arbolSiguiente != null) {
+                arbolSiguiente = arbolSiguiente.root.buscarSubArbol(letras[i]);
+            }
+        }
+        if (arbolSiguiente != null) {
+            if (arbolSiguiente.root.buscarSubArbol(palabra) != null) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+ 
+

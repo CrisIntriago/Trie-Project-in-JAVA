@@ -36,6 +36,7 @@ public class App extends Application {
         launch();
         Trie diccionario= new Trie();
         diccionario.insert("Cristiancito");
+        System.out.println(diccionario.busquedaPalabra("Cristiancito"));
         System.out.println("Hay que probar si sirve jajaja");
     }
 
