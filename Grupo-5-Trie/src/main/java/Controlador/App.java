@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.Trie;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,6 +34,10 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+        Trie diccionario= new Trie();
+        diccionario.insert("Cristiancito");
+        System.out.println(diccionario.busquedaPalabra("Cristiancito"));
+        System.out.println("Hay que probar si sirve jajaja");
     }
 
 }

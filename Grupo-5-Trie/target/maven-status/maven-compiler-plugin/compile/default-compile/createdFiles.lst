@@ -1,4 +1,5 @@
 com\mycompany\grupo\trie\App.class
 com\mycompany\grupo\trie\PrimaryController.class
 module-info.class
+Modelo\Trie.class
 com\mycompany\grupo\trie\SecondaryController.class
