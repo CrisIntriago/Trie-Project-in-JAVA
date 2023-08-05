@@ -12,26 +12,30 @@ import java.util.HashMap;
  */
 public class TrieNode<E> {
 
-    private HashMap<String, Trie> MapaSubArboles;
+    private HashMap<Character, Trie> MapaSubArboles;
     private boolean isPalabra;
 
     public TrieNode() {
-        this.MapaSubArboles = new HashMap<String, Trie>();
+        this.MapaSubArboles = new HashMap<Character, Trie>();
+    }
+    public HashMap<Character, Trie >getMapaSubArboles(){
+        return MapaSubArboles;
+        
     }
 
-    public Trie insertarSubArbol(String clave) {
-        Trie subArbol = null;
-
-        if (isNuevaLetra(clave)) {
-            subArbol = añadirSubArbol(clave);
-        } else {
-            subArbol = MapaSubArboles.get(clave);
+    public boolean insertarSubArbol(Character clave) { // ahopra solo  lo inserta, para dar el boleano
+        
+        if(clave!=null){
+             CrearSubArbol(clave);
+            return true;
+      
         }
-        return subArbol;
+        return false;
+       
     }
 
 
-    public boolean isNuevaLetra(String clave) {
+    public boolean isNuevaLetra(Character clave) {
         return !MapaSubArboles.containsKey(clave);
     }
 
@@ -39,23 +43,20 @@ public class TrieNode<E> {
         return isPalabra;
     }
 
-    public void confirmarPalabra() {
-        this.isPalabra = true;
-    }
 
-
-    public Trie añadirSubArbol(String key) {
+    public Trie CrearSubArbol(char key) {
         Trie nuevoArbol = new Trie();
         MapaSubArboles.put(key, nuevoArbol);
         return nuevoArbol;
     }
 
-    public Trie buscarSubArbol(String clave) {
+    public Trie buscarSubArbol(Character clave) {
         if (isNuevaLetra(clave)) {
             return null;
         } else {
             return MapaSubArboles.get(clave);
         }
+    
     }
 
 }

@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import Modelo.Trie;
 
 /**
  * JavaFX App
@@ -18,7 +19,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("/Vistas/primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
@@ -34,10 +35,14 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+        Trie arbol=new Trie();
+        System.out.println("Insercion: "+arbol.insert("Hola",0));
+        /*
         Trie diccionario= new Trie();
         diccionario.insert("Cristiancito");
         System.out.println(diccionario.busquedaPalabra("Cristiancito"));
         System.out.println("Hay que probar si sirve jajaja");
+*/
     }
 
 }

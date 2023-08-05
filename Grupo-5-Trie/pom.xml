@@ -36,7 +36,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>com.mycompany.grupo.trie.App</mainClass>
+                    <mainClass>Controlador.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>
