@@ -21,17 +21,20 @@ public class Trie {
     
 
     public boolean insert(String palabra, int indice){ //metodo q requiere insertar pero poneido indice 0, que se se llama por recursividad
-        boolean validacion=false;
-        for(int i=indice;i< palabra.length();i++){
-            char letra=palabra.charAt(i);
-                 if(this.getRoot().isNuevaLetra(letra)){
-           validacion= this.getRoot().insertarSubArbol(letra);   
-            }else{
-               this.getRoot().buscarSubArbol(letra).insert(palabra,i+1);
-            
+        boolean Validacion=false;
+        if(indice==palabra.length()){
+            this.getRoot().setContent(palabra);
+            return true;
         }
-        }
-       return validacion; 
+       char Letra = palabra.charAt(indice);
+       if(this.getRoot().isNuevaLetra(Letra)){
+           this.getRoot().insertarSubArbol(Letra);
+       }if(!this.getRoot().isNuevaLetra(Letra)){
+           Trie SubArbol= this.getRoot().buscarSubArbol(Letra);
+           Validacion=SubArbol.insert(palabra, indice+1);
+       }
+         
+       return Validacion; 
     }public TrieNode getRoot(){
         return root;
     }

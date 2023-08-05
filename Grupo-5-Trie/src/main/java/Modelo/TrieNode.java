@@ -14,6 +14,7 @@ public class TrieNode<E> {
 
     private HashMap<Character, Trie> MapaSubArboles;
     private boolean isPalabra;
+    private E content=null;
 
     public TrieNode() {
         this.MapaSubArboles = new HashMap<Character, Trie>();
@@ -57,6 +58,10 @@ public class TrieNode<E> {
             return MapaSubArboles.get(clave);
         }
     
+    }
+
+    public void setContent(E content) {
+        this.content = content;
     }
 
 }
