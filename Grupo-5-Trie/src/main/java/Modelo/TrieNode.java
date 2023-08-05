@@ -13,7 +13,6 @@ import java.util.HashMap;
 public class TrieNode<E> {
 
     private HashMap<Character, Trie> MapaSubArboles;
-    private boolean isPalabra;
     private E content=null;
 
     public TrieNode() {
@@ -40,9 +39,6 @@ public class TrieNode<E> {
         return !MapaSubArboles.containsKey(clave);
     }
 
-    public boolean isPalabra() {
-        return isPalabra;
-    }
 
 
     public Trie CrearSubArbol(char key) {
@@ -62,6 +58,7 @@ public class TrieNode<E> {
 
     public void setContent(E content) {
         this.content = content;
+        
     }
 
 }
