@@ -1,4 +1,4 @@
-package com.mycompany.grupo.trie;
+package Controlador;
 
 import java.io.IOException;
 import java.net.URL;
