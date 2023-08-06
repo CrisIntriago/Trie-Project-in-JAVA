@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
@@ -36,6 +37,9 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private Button btnEliminar;
+    
+    @FXML
+    private Label notificaciones;
 
     private ObservableList<String> sugerencias = FXCollections.observableArrayList();
 
@@ -59,6 +63,13 @@ public class PrimaryController implements Initializable {
     @FXML
     void insertarDic(ActionEvent ae) {
         System.out.println("Se ingresó la palabra: " + texto.getText().toLowerCase() + " " + diccionario.insert(texto.getText().toLowerCase(), 0));
+        texto.clear();
     }
 
+    
+    @FXML
+    void buscarEnDic(ActionEvent ae){
+        System.out.println("Se buscó la palabra: "+texto.getText());
+        notificaciones.setText(diccionario.buscarPalabra(texto.getText()));
+    }
 }

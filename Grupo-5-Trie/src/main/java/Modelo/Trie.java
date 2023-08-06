@@ -22,7 +22,6 @@ public class Trie {
     public Trie() {
         this.root = new TrieNode();
     }
-    
 
     public boolean insert(String palabra, int indice) { //metodo q requiere insertar pero poneido indice 0, que se se llama por recursividad
 
@@ -50,23 +49,26 @@ public class Trie {
         return root;
     }
 
-    public boolean busquedaPalabra(String palabra,int indice) {
-
-        boolean Validacion = false;
-        
-        char Letra = palabra.charAt(indice);
-        
-        if (this.getRoot().isNuevaLetra(Letra)) {
-            return false;
+    public String buscarPalabra(String palabra) {
+        boolean resultado = busquedaPalabra(palabra, 0);
+        if (resultado == true) {
+            return "La palabra " + palabra + " está en el diccionario";
         }
-        
-        if (!this.getRoot().isNuevaLetra(Letra)) {
-            Trie SubArbol = this.getRoot().buscarSubArbol(Letra);
-            Validacion = SubArbol.insert(palabra, indice + 1);
-        }
+        return "La palabra " + palabra + " no está en el diccionario";
 
-        return Validacion;
     }
+
+    public boolean busquedaPalabra(String palabra, int indice) {
+        Trie subArbolBuscado = obtenerSubArbol(palabra);
+        if (subArbolBuscado != null) {
+            if (subArbolBuscado.getRoot().tienePalabra()) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public Trie obtenerSubArbol(String palabra) {
 
         char[] letras = palabra.toCharArray();
@@ -80,25 +82,26 @@ public class Trie {
                 arbolRetornable = arbolActual;
                 return arbolRetornable;
             }
-                arbolActual = arbolActual.getRoot().buscarSubArbol(letras[contador]);
-                contador++;
+            arbolActual = arbolActual.getRoot().buscarSubArbol(letras[contador]);
+            contador++;
         }
 
         return arbolRetornable;
 
     }
+
     public void CompletarPalabras(String palabraIncompleta, ObservableList<String> listaActualizar) {
-        
+
         listaActualizar.clear();
-        
+
         if (obtenerSubArbol(palabraIncompleta) != null) {
             obtenerSubArbol(palabraIncompleta).completarPalabrasDesdeSubArbol(listaActualizar);
-        }else{
+        } else {
             System.out.println("No hay palabras a recomendar");
         }
 
     }
-    
+
     public void completarPalabrasDesdeSubArbol(ObservableList<String> listaActualizar) {
 
         Queue<Trie> cola = new LinkedList();
