@@ -36,28 +36,7 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
-        Trie diccionario = new Trie();
-
-        System.out.println(diccionario.insert("Cristiancito", 0));
-        System.out.println(diccionario.busquedaPalabra("Cristiancito", 0));
-
-        System.out.println(diccionario.insert("Cristiancitop", 0));
-        System.out.println(diccionario.busquedaPalabra("Cristiancitop", 0));
-
-        LinkedList<String> recomendaciones = new LinkedList();
-        diccionario.CompletarPalabras("Cr", recomendaciones);
-        System.out.println(recomendaciones);
-        System.out.println(diccionario.insert("Crack", 0));
-        System.out.println(diccionario.insert("Covid", 0));
-        diccionario.CompletarPalabras("Co", recomendaciones);
-        System.out.println(recomendaciones);
-
-        diccionario.CompletarPalabras("C", recomendaciones);
-        System.out.println(recomendaciones);
         
-        diccionario.CompletarPalabras("CovidIsnooooorial", recomendaciones);
-        System.out.println(recomendaciones);
-
     }
         
     }

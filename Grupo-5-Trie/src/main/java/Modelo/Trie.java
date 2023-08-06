@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -86,7 +87,7 @@ public class Trie {
         return arbolRetornable;
 
     }
-    public void CompletarPalabras(String palabraIncompleta, LinkedList<String> listaActualizar) {
+    public void CompletarPalabras(String palabraIncompleta, ObservableList<String> listaActualizar) {
         
         listaActualizar.clear();
         
@@ -98,7 +99,7 @@ public class Trie {
 
     }
     
-    public void completarPalabrasDesdeSubArbol(LinkedList<String> listaActualizar) {
+    public void completarPalabrasDesdeSubArbol(ObservableList<String> listaActualizar) {
 
         Queue<Trie> cola = new LinkedList();
 
