@@ -67,7 +67,7 @@ public class PrimaryController implements Initializable {
 
     @FXML
     void insertarDic(ActionEvent ae) {
-        System.out.println("Se ingresó la palabra: " + texto.getText().toLowerCase() + " " + diccionario.insert(texto.getText().toLowerCase(), 0));
+        System.out.println("Se ingresó la palabra: " + texto.getText().toLowerCase() + " " + diccionario.insertarPalabra(texto.getText().toLowerCase(), 0));
         texto.clear();
     }
 
@@ -92,11 +92,12 @@ public class PrimaryController implements Initializable {
 
     @FXML
     void cargarDiccionario(ActionEvent ae) {
+        diccionario.clear();
         ManejadorArchivo.cargarDiccionario(diccionario);
-        
         texto.clear();
         ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
         diccionario.CompletarPalabras(texto.getText(), filteredSuggestions);
+        listaSugerencias.getItems().clear();
         listaSugerencias.setItems(filteredSuggestions);
 
 
@@ -107,10 +108,7 @@ public class PrimaryController implements Initializable {
         texto.clear();
         ObservableList<String> guardables = FXCollections.observableArrayList();
         diccionario.CompletarPalabras(texto.getText(), guardables);
-        for (String palabra : guardables) {
-            ManejadorArchivo.escribir(palabra);
-            System.out.println("Se guardaró correctamente " + palabra);
-        }
+        ManejadorArchivo.guardarDiccionario(guardables);
 
     }
 

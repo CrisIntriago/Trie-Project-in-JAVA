@@ -23,6 +23,15 @@ public class Trie {
         this.root = new TrieNode();
     }
 
+    public boolean insertarPalabra(String palabra, int indice) {
+        if (!palabra.isBlank()) {
+            insert(palabra, 0);
+            return true;
+        }
+        System.out.println("No puede insertar una palabra invisible.");
+        return false;
+    }
+
     public boolean insert(String palabra, int indice) { //metodo q requiere insertar pero poneido indice 0, que se se llama por recursividad
 
         boolean Validacion = false;
@@ -152,6 +161,12 @@ public class Trie {
 
     public boolean isLeaf() {
         return this.getRoot().getMapaSubArboles().isEmpty();
+    }
+    
+    public boolean clear(){
+        System.out.println("Se borraron los elementos del diccionario!");
+        this.root= new TrieNode();
+        return true;
     }
 
 }

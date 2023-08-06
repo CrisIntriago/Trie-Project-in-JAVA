@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -20,6 +21,9 @@ public class ManejadorArchivo {
 
     private static final String ubicacion = "src/main/resources/palabrasDiccionario.txt";
 
+    
+    //ESTOS 2 MÉTODOS NO SE USAN, ESCRIBIR Y ELIMINAR PALABRA, LEYENDO EL PDF dice que solo se guarda y borra al dar click en el boton
+    
     public static void escribir(String palabra) {
         try {
             FileWriter fileWriter = new FileWriter(ManejadorArchivo.ubicacion, true);
@@ -33,7 +37,6 @@ public class ManejadorArchivo {
             e.printStackTrace();
         }
     }
-
     public static void eliminarPalabra(String palabra) {
         try (BufferedReader br = new BufferedReader(new FileReader(ManejadorArchivo.ubicacion))) {
             List<String> lines = new ArrayList<>();
@@ -69,6 +72,22 @@ public class ManejadorArchivo {
         }
 
     }
-    
-    
+
+    public static void guardarDiccionario(ObservableList<String> guardables) {
+        try {
+            FileWriter fileWriter = new FileWriter(ManejadorArchivo.ubicacion, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (String palabra : guardables) {
+                bufferedWriter.write(palabra);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
