@@ -60,5 +60,13 @@ public class TrieNode<E> {
         this.content = content;
         
     }
+    
+    public boolean tienePalabra(){
+        return this.content!=null;
+    }
+    
+    public E getContent(){
+        return this.content;
+    }
 
 }
