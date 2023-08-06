@@ -163,6 +163,7 @@ public class Trie {
         return this.getRoot().getMapaSubArboles().isEmpty();
     }
     
+    //Averiguar si al eliminar asi una referencia se borran todas las referencias hijas y se vuelven null o queedan en memoria siendo inutiles
     public boolean clear(){
         System.out.println("Se borraron los elementos del diccionario!");
         this.root= new TrieNode();
