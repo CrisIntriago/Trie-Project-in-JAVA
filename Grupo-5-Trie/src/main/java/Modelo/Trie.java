@@ -122,4 +122,36 @@ public class Trie {
         }
 
     }
+
+    public boolean eliminarPalabra(String palabra) {
+        //Caso base
+        if (palabra.length() == 0) {
+            if (!this.getRoot().tienePalabra()) {
+                return false;
+            } else {
+                this.getRoot().setContent(null);
+                return true;
+            }//Caso recursivo
+        } else {
+            String primera = palabra.substring(0, 1);
+            String sobrante = palabra.substring(1);
+            Trie subArbol = obtenerSubArbol(primera);
+            if (subArbol == null) {
+                return false;
+            } else {
+                boolean bool = subArbol.eliminarPalabra(sobrante);
+                if (!subArbol.getRoot().tienePalabra() && subArbol.isLeaf()) {
+                    subArbol.getRoot().setContent(null);
+
+                }
+                return bool;
+            }
+
+        }
+    }
+
+    public boolean isLeaf() {
+        return this.getRoot().getMapaSubArboles().isEmpty();
+    }
+
 }

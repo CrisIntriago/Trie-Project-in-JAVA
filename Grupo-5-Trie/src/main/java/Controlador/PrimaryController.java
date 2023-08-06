@@ -37,7 +37,7 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private Button btnEliminar;
-    
+
     @FXML
     private Label notificaciones;
 
@@ -66,10 +66,23 @@ public class PrimaryController implements Initializable {
         texto.clear();
     }
 
-    
     @FXML
-    void buscarEnDic(ActionEvent ae){
-        System.out.println("Se buscó la palabra: "+texto.getText());
+    void buscarEnDic(ActionEvent ae) {
+        System.out.println("Se buscó la palabra: " + texto.getText());
         notificaciones.setText(diccionario.buscarPalabra(texto.getText()));
+    }
+
+    @FXML
+    void eliminarDeDic(ActionEvent ae) {
+        boolean resultadoEliminar=diccionario.eliminarPalabra(texto.getText());
+        if(resultadoEliminar){
+            notificaciones.setText(("Se eliminó correctamente la palabra "+texto.getText()));
+            texto.clear();
+        }else{
+            System.out.println("Esa palabra no está en el diccionario");
+            notificaciones.setText("Esa palabra no está en el diccionario");
+        }
+    
+        
     }
 }
