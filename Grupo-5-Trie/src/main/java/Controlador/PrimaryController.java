@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.ManejadorArchivo;
 import Modelo.Trie;
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +25,12 @@ public class PrimaryController implements Initializable {
     private Trie diccionario = new Trie();
 
     @FXML
+    private Button btnGuardar;
+
+    @FXML
+    private Button btnCargar;
+
+    @FXML
     private VBox root;
 
     @FXML
@@ -41,12 +48,11 @@ public class PrimaryController implements Initializable {
     @FXML
     private Label notificaciones;
 
-    private ObservableList<String> sugerencias = FXCollections.observableArrayList();
+    private ListView<String> listaSugerencias = new ListView<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        ListView<String> listaSugerencias = new ListView<>();
         listaSugerencias.setMaxHeight(100);
         texto.textProperty().addListener((observable, oldValue, newValue) -> {
             String searchText = newValue.toLowerCase();
@@ -56,7 +62,6 @@ public class PrimaryController implements Initializable {
 
             listaSugerencias.setItems(filteredSuggestions);
         });
-
         root.getChildren().add(listaSugerencias);
     }
 
@@ -74,15 +79,39 @@ public class PrimaryController implements Initializable {
 
     @FXML
     void eliminarDeDic(ActionEvent ae) {
-        boolean resultadoEliminar=diccionario.eliminarPalabra(texto.getText());
-        if(resultadoEliminar){
-            notificaciones.setText(("Se eliminó correctamente la palabra "+texto.getText()));
+        boolean resultadoEliminar = diccionario.eliminarPalabra(texto.getText());
+        if (resultadoEliminar) {
+            notificaciones.setText(("Se eliminó correctamente la palabra " + texto.getText()));
             texto.clear();
-        }else{
+        } else {
             System.out.println("Esa palabra no está en el diccionario");
             notificaciones.setText("Esa palabra no está en el diccionario");
         }
-    
-        
+
     }
+
+    @FXML
+    void cargarDiccionario(ActionEvent ae) {
+        ManejadorArchivo.cargarDiccionario(diccionario);
+        
+        texto.clear();
+        ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
+        diccionario.CompletarPalabras(texto.getText(), filteredSuggestions);
+        listaSugerencias.setItems(filteredSuggestions);
+
+
+    }
+
+    @FXML
+    void guardarDiccionario(ActionEvent ae) {
+        texto.clear();
+        ObservableList<String> guardables = FXCollections.observableArrayList();
+        diccionario.CompletarPalabras(texto.getText(), guardables);
+        for (String palabra : guardables) {
+            ManejadorArchivo.escribir(palabra);
+            System.out.println("Se guardaró correctamente " + palabra);
+        }
+
+    }
+
 }
