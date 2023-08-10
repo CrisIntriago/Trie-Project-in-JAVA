@@ -1,10 +1,14 @@
 package Controlador;
 
 import Modelo.ManejadorArchivo;
+import Modelo.PalabraComparacion;
 import Modelo.Trie;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
@@ -74,8 +78,16 @@ public class PrimaryController implements Initializable {
     @FXML
     void buscarEnDic(ActionEvent ae) {
         System.out.println("Se buscó la palabra: " + texto.getText());
-        notificaciones.setText(diccionario.buscarPalabra(texto.getText()));
+        if(diccionario.busquedaPalabra(texto.getText())){
+             notificaciones.setText(diccionario.buscarPalabra(texto.getText()));
+           
+        }
+            notificaciones.setText("Quizas quisiste buscar:");
+            Comparacion(listaSugerencias);
     }
+        
+    
+        
 
     @FXML
     void eliminarDeDic(ActionEvent ae) {
@@ -110,6 +122,34 @@ public class PrimaryController implements Initializable {
         diccionario.CompletarPalabras(texto.getText(), guardables);
         ManejadorArchivo.guardarDiccionario(guardables);
 
+    }
+    void Comparacion(ListView<String> lista){
+      Stack<PalabraComparacion>  pila= diccionario.Similitud(texto.getText());
+     ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
+
+      Comparator <PalabraComparacion>cmp=new Comparator<>() {
+          @Override
+          public int compare(PalabraComparacion o1, PalabraComparacion o2) {
+           if(o1.getPorcentaje()<o2.getPorcentaje()){
+               return 1; 
+          }
+          return -1;
+      }
+          };
+          
+      PriorityQueue<PalabraComparacion> cola=new PriorityQueue<PalabraComparacion>(cmp);
+      while(!pila.isEmpty()){
+          cola.add(pila.pop());
+      }
+ 
+       filteredSuggestions.add(cola.poll().getPalabra());
+      
+      lista.getItems().clear();
+      lista.setItems(filteredSuggestions);
+  
+      
+      
+        
     }
 
 }

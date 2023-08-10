@@ -9,13 +9,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 import javafx.collections.ObservableList;
 
 /**
  *
  * @author Administrador
  */
-public class Trie {
+public class Trie <E> {
 
     private TrieNode root;
 
@@ -59,7 +60,7 @@ public class Trie {
     }
 
     public String buscarPalabra(String palabra) {
-        boolean resultado = busquedaPalabra(palabra, 0);
+        boolean resultado = busquedaPalabra(palabra);
         if (resultado == true) {
             return "La palabra " + palabra + " está en el diccionario";
         }
@@ -67,7 +68,7 @@ public class Trie {
 
     }
 
-    public boolean busquedaPalabra(String palabra, int indice) {
+    public boolean busquedaPalabra(String palabra) {
         Trie subArbolBuscado = obtenerSubArbol(palabra);
         if (subArbolBuscado != null) {
             if (subArbolBuscado.getRoot().tienePalabra()) {
@@ -96,9 +97,7 @@ public class Trie {
         }
 
         return arbolRetornable;
-
     }
-
     public void CompletarPalabras(String palabraIncompleta, ObservableList<String> listaActualizar) {
 
         listaActualizar.clear();
@@ -129,9 +128,29 @@ public class Trie {
             }
 
         }
+        
+            
 
     }
+    private LinkedList<String> ObtenerPalabras(){
+        LinkedList<String> palabras= new LinkedList<>();
+        Queue<Trie> cola = new LinkedList();
 
+        cola.offer(this);
+
+        while (!cola.isEmpty()) {
+            Trie arbolTemporal = cola.poll();
+            Set<Character> keys = arbolTemporal.getRoot().getMapaSubArboles().keySet();
+            for (Character key : keys) {
+                cola.offer(arbolTemporal.getRoot().buscarSubArbol(key));
+            }
+            if (arbolTemporal.getRoot().tienePalabra()) {
+                String palabra = (String) arbolTemporal.getRoot().getContent();
+                palabras.add(palabra);
+            }    
+     } 
+        return palabras;
+         }
     public boolean eliminarPalabra(String palabra) {
         //Caso base
         if (palabra.length() == 0) {
@@ -169,5 +188,47 @@ public class Trie {
         this.root= new TrieNode();
         return true;
     }
+    private int getDistancia(String palabra1, String palabra2){
+        int m = palabra1.length();
+        int n = palabra2.length();
+ 
+        int[][] T = new int[m + 1][n + 1];
+        for (int i = 1; i <= m; i++) {
+            T[i][0] = i;
+        }
+        for (int j = 1; j <= n; j++) {
+            T[0][j] = j;
+        }
+ 
+        int cost;
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j <= n; j++) {
+                cost = palabra2.charAt(i - 1) == palabra2.charAt(j - 1) ? 0: 1;
+                T[i][j] = Integer.min(Integer.min(T[i - 1][j] + 1, T[i][j - 1] + 1),
+                        T[i - 1][j - 1] + cost);
+            }
+        }
+        return T[m][n];
+    }
+    public Stack<PalabraComparacion>Similitud(String palabra){
+        Stack<PalabraComparacion> pila =new Stack<>();
+        for(String palabras : this.ObtenerPalabras()){
+             double maxLength = Double.max(palabra.length(), palabras.length());
+        if (maxLength > 0) {
+            // opcionalmente ignora el caso si es necesario
+            double similitud=(maxLength - getDistancia(palabra, palabras)) / maxLength;
+            PalabraComparacion pc= new PalabraComparacion(palabras,similitud);
+            pila.add(pc);     
+        } 
+            }
+                
+      return pila;  
+       
+    }
 
-}
+        
+        
+        
+    }
+
+
