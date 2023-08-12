@@ -226,7 +226,7 @@ public class Trie <E> {
       return pila;  
        
     }
-    public List<String> palabras_terminacion(String palabra)//se coge las ultimas 2 letras para comparar de cada palabra{
+    public List<String> palabras_terminacion(String palabra){//se coge las ultimas 2 letras para comparar de cada palabra
        LinkedList<String> list= this.ObtenerPalabras();
         LinkedList<String> lista= new  LinkedList<> ();
        String terminacion= "";
