@@ -6,6 +6,8 @@ import Modelo.Trie;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -79,12 +81,30 @@ public class PrimaryController implements Initializable {
     void buscarEnDic(ActionEvent ae) {
         System.out.println("Se buscó la palabra: " + texto.getText());
         if(diccionario.busquedaPalabra(texto.getText())){
+            System.out.println("ingreso");
              notificaciones.setText(diccionario.buscarPalabra(texto.getText()));
            
-        }
-            notificaciones.setText("Quizas quisiste buscar:");
+        }else{  System.out.println("Otra");
+             notificaciones.setText("Quizas quisiste buscar:");
             Comparacion(listaSugerencias);
+            
+        }
+           
     }
+    @FXML
+    void buscarTerminacion(ActionEvent e){
+        ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
+       List<String>Lista=diccionario.palabras_terminacion(texto.getText());
+       filteredSuggestions.addAll(Lista);
+       listaSugerencias.getItems().clear();
+       listaSugerencias.setItems(filteredSuggestions);
+       
+           
+       
+       }
+       
+       
+    
         
     
         
@@ -130,7 +150,7 @@ public class PrimaryController implements Initializable {
       Comparator <PalabraComparacion>cmp=new Comparator<>() {
           @Override
           public int compare(PalabraComparacion o1, PalabraComparacion o2) {
-           if(o1.getPorcentaje()<o2.getPorcentaje()){
+           if(o1.getPorcentaje()>o2.getPorcentaje()){
                return 1; 
           }
           return -1;

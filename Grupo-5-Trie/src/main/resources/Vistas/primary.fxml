@@ -27,6 +27,11 @@
                      </VBox.margin>
                   </Button>
                   <Button fx:id="btnCargar" mnemonicParsing="false" onAction="#cargarDiccionario" text="Cargar Diccionario" />
+                  <Button mnemonicParsing="false" onAction="#buscarTerminacion" text="Buscar Terminacion">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </children>

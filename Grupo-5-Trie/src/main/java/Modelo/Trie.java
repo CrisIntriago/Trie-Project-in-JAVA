@@ -7,6 +7,7 @@ package Modelo;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
@@ -132,7 +133,7 @@ public class Trie <E> {
             
 
     }
-    private LinkedList<String> ObtenerPalabras(){
+    private LinkedList<String> ObtenerPalabras(){//n se crea este metodo apra obtener todas las palabras del arbol que se invoca (preferible de todo el arbol
         LinkedList<String> palabras= new LinkedList<>();
         Queue<Trie> cola = new LinkedList();
 
@@ -193,19 +194,19 @@ public class Trie <E> {
         int n = palabra2.length();
  
         int[][] T = new int[m + 1][n + 1];
-        for (int i = 1; i <= m; i++) {
+        for (int i = 1; i < m; i++) {
             T[i][0] = i;
         }
-        for (int j = 1; j <= n; j++) {
+        for (int j = 1; j < n; j++) {
             T[0][j] = j;
         }
  
         int cost;
         for (int i = 1; i < m; i++) {
-            for (int j = 1; j <= n; j++) {
-                cost = palabra2.charAt(i - 1) == palabra2.charAt(j - 1) ? 0: 1;
-                T[i][j] = Integer.min(Integer.min(T[i - 1][j] + 1, T[i][j - 1] + 1),
-                        T[i - 1][j - 1] + cost);
+            for (int j = 1; j < n; j++) {
+                cost = palabra2.charAt(i - 1) == palabra2.charAt(j) ? 0: 1;
+                T[i][j] = Integer.min(Integer.min(T[i ][j], T[i][j ] ),
+                        T[i ][j ] + cost);
             }
         }
         return T[m][n];
@@ -224,6 +225,30 @@ public class Trie <E> {
                 
       return pila;  
        
+    }
+    public List<String> palabras_terminacion(String palabra)//se coge las ultimas 2 letras para comparar de cada palabra{
+       LinkedList<String> list= this.ObtenerPalabras();
+        LinkedList<String> lista= new  LinkedList<> ();
+       String terminacion= "";
+       terminacion+=palabra.charAt(palabra.length()-2);
+       terminacion+=palabra.charAt(palabra.length()-1);
+       for( String p: list){
+           String terminacionP="";
+       terminacionP+=p.charAt(p.length()-2);
+       terminacionP+=p.charAt(p.length()-1);
+          if(terminacionP.contains(terminacion)){
+              lista.add(p);
+              
+          }
+           
+       }
+       return lista;
+       
+       
+       
+  
+       
+        
     }
 
         
