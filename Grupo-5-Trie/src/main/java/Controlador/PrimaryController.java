@@ -102,6 +102,17 @@ public class PrimaryController implements Initializable {
            
        
        }
+    @FXML
+    void buscarPrefijo(ActionEvent e){
+        ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
+       List<String>Lista=diccionario.palabras_prefijo(texto.getText());
+       filteredSuggestions.addAll(Lista);
+       listaSugerencias.getItems().clear();
+       listaSugerencias.setItems(filteredSuggestions);
+       
+           
+       
+       }
        
        
     

@@ -243,16 +243,28 @@ public class Trie <E> {
            
        }
        return lista;
-       
-       
-       
-  
-       
-        
+         
     }
+     public List<String> palabras_prefijo(String palabra){//se coge las primeras 2 letras para comparar
+       LinkedList<String> list= this.ObtenerPalabras();
+        LinkedList<String> lista= new  LinkedList<> ();
+       String terminacion= "";
+       terminacion+=palabra.charAt(0);
+       terminacion+=palabra.charAt(1);
+       for( String p: list){
+           String terminacionP="";
+       terminacionP+=p.charAt(0);
+       terminacionP+=p.charAt(1);
+          if(terminacionP.contains(terminacion)){
+              lista.add(p);
+              
+          }
+           
+       }
+       return lista;
 
         
-        
+     }
         
     }
 
