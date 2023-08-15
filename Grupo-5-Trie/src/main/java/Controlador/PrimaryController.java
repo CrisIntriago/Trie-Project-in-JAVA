@@ -84,11 +84,11 @@ public class PrimaryController implements Initializable {
             System.out.println("ingreso");
              notificaciones.setText(diccionario.buscarPalabra(texto.getText()));
            
-        }else{  System.out.println("Otra");
+        }/*else{  System.out.println("Otra");
              notificaciones.setText("Quizas quisiste buscar:");
             Comparacion(listaSugerencias);
             
-        }
+        }*/
            
     }
     @FXML
