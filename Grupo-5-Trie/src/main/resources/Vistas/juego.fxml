@@ -23,12 +23,12 @@
             </Button>
          </children>
       </HBox>
-      <Label text="Piensa Rápido">
+      <Label prefHeight="44.0" prefWidth="250.0" text="Piensa Rápido">
          <font>
             <Font name="Bell MT" size="43.0" />
          </font>
       </Label>
-      <Label prefHeight="78.0" prefWidth="574.0" text="Obtendrás 20 prefijos aleatorios cada 3 segundos con los que deberás crear una épica historia !" textAlignment="CENTER" wrapText="true">
+      <Label prefHeight="78.0" prefWidth="488.0" text="Obtendrás 20 prefijos aleatorios cada 3 segundos con los que deberás crear una épica historia !" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Bell MT" size="17.0" />
          </font>
@@ -51,7 +51,7 @@
             <Insets left="50.0" right="50.0" />
          </VBox.margin>
       </TextField>
-      <ListView fx:id="listaSugerencias2" onMouseClicked="#obtenerString" prefHeight="160.0" prefWidth="665.0" />
+      <ListView fx:id="listaSugerencias2" onMouseClicked="#obtenerString" prefHeight="122.0" prefWidth="665.0" />
       <TextField fx:id="historia" prefHeight="129.0" prefWidth="665.0">
          <opaqueInsets>
             <Insets />

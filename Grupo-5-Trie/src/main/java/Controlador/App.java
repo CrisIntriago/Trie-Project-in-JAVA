@@ -16,11 +16,11 @@ import java.util.LinkedList;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    public static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("/Vistas/primary"), 640, 480);
+        scene = new Scene(loadFXML("/Vistas/primary"));
         stage.setScene(scene);
         stage.show();
     }

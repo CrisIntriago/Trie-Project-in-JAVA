@@ -116,6 +116,7 @@ public class JuegoController implements Initializable {
                 Platform.runLater(() -> texto2.setText(prefijoAleatorio));
 
             }
+            Platform.runLater(() -> txtInfo.setText("El juego se acabó, revisa tu épica historia debajo"));
         });
         updateThread.setDaemon(true); // Set the thread as daemon (won't prevent the application from exiting)
         updateThread.start();
