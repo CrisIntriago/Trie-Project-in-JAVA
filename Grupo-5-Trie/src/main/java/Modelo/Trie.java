@@ -106,7 +106,7 @@ public class Trie <E> {
         if (obtenerSubArbol(palabraIncompleta) != null) {
             obtenerSubArbol(palabraIncompleta).completarPalabrasDesdeSubArbol(listaActualizar);
         } else {
-            System.out.println("No hay palabras a recomendar");
+            
         }
 
     }

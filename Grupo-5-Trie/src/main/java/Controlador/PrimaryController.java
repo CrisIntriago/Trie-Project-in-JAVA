@@ -84,14 +84,11 @@ public class PrimaryController implements Initializable {
     void buscarEnDic(ActionEvent ae) {
         System.out.println("Se buscó la palabra: " + texto.getText());
         if(diccionario.busquedaPalabra(texto.getText())){
-            System.out.println("ingreso");
              notificaciones.setText(diccionario.buscarPalabra(texto.getText()));
            
-        }/*else{  System.out.println("Otra");
-             notificaciones.setText("Quizas quisiste buscar:");
-            Comparacion(listaSugerencias);
-            
-        }*/
+        }else{
+            notificaciones.setText("Esa palabra no existe en este diccionario");
+        }
            
     }
     @FXML

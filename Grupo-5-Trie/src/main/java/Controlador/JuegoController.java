@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.ManejadorArchivo;
 import Modelo.Trie;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -84,8 +85,10 @@ public class JuegoController implements Initializable {
     }
 
     @FXML
-    public void regresar() {
+    public void regresar() throws IOException {
         System.out.println("Se clickeó en regresar");
+        App.setRoot("/Vistas/primary");
+
     }
 
     public void actualizarAutomaticamente() {
@@ -98,7 +101,7 @@ public class JuegoController implements Initializable {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            
+
             while (contador < 20) {
                 try {
                     Thread.sleep(3000); // Sleep for 5 seconds
