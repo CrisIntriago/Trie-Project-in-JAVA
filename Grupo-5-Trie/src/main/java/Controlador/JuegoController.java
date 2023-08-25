@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -45,7 +46,7 @@ public class JuegoController implements Initializable {
     private TextField texto2;
 
     @FXML
-    private TextField historia;
+    private TextArea historia;
 
     @FXML
     private Label txtInfo;
@@ -54,6 +55,8 @@ public class JuegoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        historia.setWrapText(true);
 
         texto2.textProperty().addListener((observable, oldValue, newValue) -> {
             String searchText = newValue.toLowerCase();

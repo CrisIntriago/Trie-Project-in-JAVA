@@ -62,7 +62,7 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        listaSugerencias.setMaxHeight(100);
+        listaSugerencias.setMaxHeight(300);
         texto.textProperty().addListener((observable, oldValue, newValue) -> {
             String searchText = newValue.toLowerCase();
             ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
@@ -169,6 +169,7 @@ public class PrimaryController implements Initializable {
     void empezarJuego(ActionEvent ae) throws IOException{
         System.out.println("Se empieza el juego");
         App.setRoot("/Vistas/juego");
+        
     }
 
 }
