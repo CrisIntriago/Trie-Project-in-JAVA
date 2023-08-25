@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="root2" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="757.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.JuegoController">
+   <children>
+      <HBox prefHeight="35.0" prefWidth="757.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#regresar" prefHeight="33.0" prefWidth="96.0" text="Regresar">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Bell MT" size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Label text="Piensa Rápido">
+         <font>
+            <Font name="Bell MT" size="43.0" />
+         </font>
+      </Label>
+      <Label prefHeight="78.0" prefWidth="574.0" text="Obtendrás 20 prefijos aleatorios cada 3 segundos con los que deberás crear una épica historia !" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Bell MT" size="17.0" />
+         </font>
+      </Label>
+      <Label text="Debes escoger palabras mientras tienes tiempo !">
+         <font>
+            <Font name="Bell MT" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="txtInfo" text="EL JUEGO EMPEZARÁ EN 20 SEGUNDOS">
+         <font>
+            <Font name="Bell MT" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="texto2" prefHeight="25.0" prefWidth="470.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets left="50.0" right="50.0" />
+         </VBox.margin>
+      </TextField>
+      <ListView fx:id="listaSugerencias2" onMouseClicked="#obtenerString" prefHeight="172.0" prefWidth="702.0" />
+      <TextField fx:id="historia" prefHeight="157.0" prefWidth="672.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="10.0" top="10.0" />
+   </padding>
+</VBox>

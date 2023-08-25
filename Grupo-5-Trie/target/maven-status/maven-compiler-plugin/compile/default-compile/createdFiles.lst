@@ -1,5 +1,5 @@
 Modelo\ManejadorArchivo.class
 Modelo\TrieNode.class
 Controlador\App.class
-module-info.class
 Modelo\Trie.class
+module-info.class

@@ -53,6 +53,9 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private Label notificaciones;
+    
+    @FXML
+    private Button btnJuego;
 
     private ListView<String> listaSugerencias = new ListView<>();
 
@@ -103,12 +106,6 @@ public class PrimaryController implements Initializable {
        
        }
    
-       
-       
-    
-        
-    
-        
 
     @FXML
     void eliminarDeDic(ActionEvent ae) {
@@ -168,9 +165,13 @@ public class PrimaryController implements Initializable {
       lista.getItems().clear();
       lista.setItems(filteredSuggestions);
   
-      
-      
         
+    }
+    
+    @FXML
+    void empezarJuego(ActionEvent ae) throws IOException{
+        System.out.println("Se empieza el juego");
+        App.setRoot("/Vistas/juego");
     }
 
 }
